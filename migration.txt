@@ -1,0 +1,4 @@
+rails g model User name:string email:string
+rails g model Car photo:string description:text name:string price:integer reservation_fee:integer reserved:boolean
+rails g model Reservation date:date city:string country:string user:references car:references
+

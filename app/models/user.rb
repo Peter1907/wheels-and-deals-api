@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  require 'securerandom'
+  has_secure_password
   has_many :reservations
   has_many :cars, through: :reservations
 

@@ -6,7 +6,7 @@ class Api::ReservationsController < ApplicationController
         date: reservation.date,
         car_name: reservation.car.name
       }
-
+    end
     render json: @data
   end
 
@@ -29,23 +29,5 @@ class Api::ReservationsController < ApplicationController
 
   def current_car
     Car.first
-  end
-end
-rent_car
-    Car.first
-  end
-end
-    Car.first
-  end
-end
-    Car.first
-  end
-end
-    Car.first
-  end
-end
-    Car.first
-  end
-end    Car.first
   end
 end

@@ -5,7 +5,6 @@ class CreateCars < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :name
       t.integer :price
-      t.integer :reservation_fee
       t.boolean :reserved, default: false
 
       t.timestamps

@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_201920) do
     t.text "description"
     t.string "name"
     t.integer "price"
-    t.integer "reservation_fee"
     t.boolean "reserved", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

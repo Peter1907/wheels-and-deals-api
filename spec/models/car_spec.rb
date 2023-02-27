@@ -7,8 +7,7 @@ RSpec.describe Car, type: :model do
       name: 'Bettle',
       photo: 'photo_link',
       description: 'Nice yellow car',
-      price: 25_000,
-      reservation_fee: 250
+      price: 25_000
     )
   end
 
@@ -41,23 +40,6 @@ RSpec.describe Car, type: :model do
 
     it 'price must be grater than zero' do
       @car_first.price = -234
-      expect(@car_first).to_not be_valid
-    end
-  end
-
-  context 'Test car.reservarion_fee validations' do
-    it 'reservation_fee must not be blank' do
-      @car_first.reservation_fee = nil
-      expect(@car_first).to_not be_valid
-    end
-
-    it 'reservation_fee must be an integer' do
-      @car_first.reservation_fee = 'foo'
-      expect(@car_first).to_not be_valid
-    end
-
-    it 'reservation_fee must be grater than zero' do
-      @car_first.reservation_fee = -234
       expect(@car_first).to_not be_valid
     end
   end

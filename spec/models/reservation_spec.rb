@@ -7,8 +7,7 @@ RSpec.describe Reservation, type: :model do
       name: 'Bettle',
       photo: 'photo_link',
       description: 'Nice yellow car',
-      price: 25_000,
-      reservation_fee: 250
+      price: 25_000
     )
     @user_first = User.create(
       name: 'Microverse',

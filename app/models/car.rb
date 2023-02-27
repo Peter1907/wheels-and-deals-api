@@ -9,7 +9,7 @@ class Car < ApplicationRecord
   def reservation_fee
     fee = price * 0.002
     return 300 if fee < 300
-    
+
     fee
   end
 end

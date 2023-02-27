@@ -6,22 +6,20 @@ class Api::ReservationsController < ApplicationController
         date: reservation.date,
         car_name: reservation.car.name
       }
-    end
-    
+
     render json: @data
   end
 
   def create
     @reservation = Reservation.create(
-        date:params[:date],
-        city:params[:city],
-        country:params[:country],
-        user:current_user,
-        car:current_car
+      date: params[:date],
+      city: params[:city],
+      country: params[:country],
+      user: current_user,
+      car: current_car
     )
     render json: @reservation
-end
-
+  end
 
   private
 
@@ -31,5 +29,23 @@ end
 
   def current_car
     Car.first
+  end
+end
+rent_car
+    Car.first
+  end
+end
+    Car.first
+  end
+end
+    Car.first
+  end
+end
+    Car.first
+  end
+end
+    Car.first
+  end
+end    Car.first
   end
 end

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Cars', type: :request do
   before(:each) do
-    @car_first = Car.create(name: 'Bettle', photo: 'photo_link', description: 'Nice yellow car', price: 25000)
-    @car_second = Car.create(name: 'Camaro', photo: 'photo_link', description: 'Nice red car', price: 30000)
+    @car_first = Car.create(name: 'Bettle', photo: 'photo_link', description: 'Nice yellow car', price: 25_000)
+    @car_second = Car.create(name: 'Camaro', photo: 'photo_link', description: 'Nice red car', price: 30_000)
   end
 
   describe 'Cars index path' do
@@ -18,7 +18,7 @@ RSpec.describe 'Cars', type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
-  
+
   describe 'Cars show path' do
     before { get car_path(@car_first.id) }
 
@@ -37,7 +37,7 @@ RSpec.describe 'Cars', type: :request do
         name: 'Audi',
         photo: 'photo_link',
         description: 'Nice black car',
-        price: 300000
+        price: 300_000
       }
     end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Cars', type: :request do
 
     it 'returns the errors when the params ara missing' do
       @params[:name] = nil
-      @params[:price] = "abc"
+      @params[:price] = 'abc'
       post cars_path, params: @params
       expect(response.body).to include('"name":["can\'t be blank"]')
       expect(response.body).to include('"price":["is not a number"]')

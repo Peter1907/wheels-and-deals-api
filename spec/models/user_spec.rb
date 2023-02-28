@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
     @user_first = User.create(
       name: 'Microverse',
       email: 'test@gmail.com',
-      password: '123456',
+      password: '123456'
     )
 
     @user_second = User.create(
       name: 'Student',
       email: 'test2@gmail.com',
-      password: '123456',
+      password: '123456'
     )
   end
 

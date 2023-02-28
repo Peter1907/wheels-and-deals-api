@@ -12,7 +12,7 @@ RSpec.describe Reservation, type: :model do
     @user_first = User.create(
       name: 'Microverse',
       email: 'test@gmail.com',
-      password: '123456',
+      password: '123456'
     )
     @reservation = Reservation.create(
       date: '2024-10-10',

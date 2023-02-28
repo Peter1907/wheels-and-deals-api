@@ -33,6 +33,9 @@ RSpec.describe 'Cars', type: :request do
 
   describe 'Cars create path' do
     before(:each) do
+      @user = User.create(name: 'Peter', email: 'peter@test.com', password: '123456')
+      post login_path, params: { email: @user.email, password: @user.password }
+      @token = JSON.parse(response.body)['token']
       @params = {
         name: 'Audi',
         photo: 'photo_link',
@@ -42,14 +45,14 @@ RSpec.describe 'Cars', type: :request do
     end
 
     it 'returns status code 201 when car is created' do
-      post cars_path, params: @params
+      post cars_path, headers: { Authorization: @token }, params: @params
       expect(response).to have_http_status(:created)
     end
 
     it 'returns the errors when the params ara missing' do
       @params[:name] = nil
       @params[:price] = 'abc'
-      post cars_path, params: @params
+      post cars_path, headers: { Authorization: @token }, params: @params
       expect(response.body).to include('"name":["can\'t be blank"]')
       expect(response.body).to include('"price":["is not a number"]')
     end

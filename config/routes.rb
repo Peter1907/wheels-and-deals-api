@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     resources :reservations, only: [:index, :create]
+
   end
   resources :cars, only: [:index, :show, :create]
+  resources :users, only: [:index, :show, :create]
+  post '/login', to: 'authentication#login'
 end

@@ -5,12 +5,14 @@ RSpec.describe User, type: :model do
   before :each do
     @user_first = User.create(
       name: 'Microverse',
-      email: 'test@gmail.com'
+      email: 'test@gmail.com',
+      password: '123456',
     )
 
     @user_second = User.create(
       name: 'Student',
-      email: 'test2@gmail.com'
+      email: 'test2@gmail.com',
+      password: '123456',
     )
   end
 
@@ -25,8 +27,8 @@ RSpec.describe User, type: :model do
       expect(@user_first).to_not be_valid
     end
 
-    it 'name must be uniqued' do
-      @user_second.name = 'Microverse'
+    it 'email must be uniqued' do
+      @user_second.email = 'test@gmail.com'
       expect(@user_second).to_not be_valid
     end
   end

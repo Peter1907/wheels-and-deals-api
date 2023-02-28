@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   def index
-    @data = User.find(current_user.id).reservations.map do |reservation|
+    @data = @current_user.reservations.map do |reservation|
       {
         city: reservation.city,
         date: reservation.date,
@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
       date: params[:date],
       city: params[:city],
       country: params[:country],
-      user: current_user,
+      user: @current_user,
       car: current_car
     )
     render json: @reservation

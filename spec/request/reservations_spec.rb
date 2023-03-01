@@ -1,5 +1,49 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe 'Users', type: :request do
+RSpec.describe 'Reservations', type: :request do
+  before do
+    @user = User.create(name: 'Miguel', email: 'example@test.com', password: '123456')
+    @car = Car.create(name: 'Lamborguini', photo: 'Photo link', description: 'Really Nice car', price: 10_000)
+    @reservation = Reservation.create(date: '2025-10-10', city: 'Manta', country: 'Australia', user: @user, car: @car)
+    post '/login', params: { email: 'example@test.com', password: '123456' }
+    @token = JSON.parse(response.body)['token']
+  end
 
-# end
+  describe 'GET /index' do
+    before do
+      get '/reservations', headers: { 'Authorization' => "Bearer #{@token}" }
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns all reservations dates' do
+      expect(response.body).to include('2025-10-10')
+    end
+
+    it 'returns all reservations city names' do
+      expect(response.body).to include('Manta')
+    end
+
+    it 'returns all reservations car names' do
+      expect(response.body).to include('Lamborguini')
+    end
+  end
+
+  describe 'POST /create' do
+    before do
+      @params = {
+        city: 'Jipijapa',
+        country: 'Ecuador',
+        date: '2024-10-10',
+        car_id: @car.id
+      }
+      post '/reservations', headers: { Authorization: @token }, params: @params
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+end

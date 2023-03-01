@@ -11,23 +11,18 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.create(
-      date: params[:date],
-      city: params[:city],
-      country: params[:country],
-      user: @current_user,
-      car: current_car
-    )
-    render json: @reservation
+    @reservation = Reservation.new(reservation_params)
+    @reservation.user = @current_user
+    if @reservation.save
+      render json: @reservation, status: :created
+    else
+      render json: @reservation.errors
+    end
   end
 
   private
 
-  def current_user
-    User.first
-  end
-
-  def current_car
-    Car.first
+  def reservation_params
+    params.permit(:date, :city, :country, :car)
   end
 end

@@ -1,4 +1,4 @@
-class ReservationsController < ApplicationController
+class Api::ReservationsController < ApiController
   def index
     @data = @current_user.reservations.map do |reservation|
       {

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::sersController < ApiController
   skip_before_action :authenticate_request, only: [:create]
   before_action :set_user, only: [:show]
 

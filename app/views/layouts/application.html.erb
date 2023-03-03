@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wheels and Deals</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta rel="icon" href="./logo.svg">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "load" %>
+  </head>
+
+  <body>
+    <main class="text-slate-800 m-0 p-0 font-lato">
+      <%= yield %>
+    </main>
+  </body>
+</html>

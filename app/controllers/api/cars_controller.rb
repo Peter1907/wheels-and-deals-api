@@ -1,4 +1,4 @@
-class Api::CarsController < ApiController
+class Api::CarsController < Api::ApiController
   skip_before_action :authenticate_request, only: %i[index show]
 
   def index

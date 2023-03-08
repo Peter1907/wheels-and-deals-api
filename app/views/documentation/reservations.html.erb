@@ -168,5 +168,89 @@
         </div>
       </div>
     </div>
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">DELETE /api/resevations</h2>
+      <p class="px-4 py-2">Deletes a reservation from the database</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">id</td>
+              <td class="border px-4 py-2">Integer</td>
+              <td class="border px-4 py-2">The ID of the reservation to be deleted</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">200</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "message": "Reservation deleted successfully" }</td>
+              <td class="border px-4 py-2">The newly created reservation</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">404</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "error": "Reservation not found" }</td>
+              <td class="border px-4 py-2">The reservation with the specified ID could not be found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const deleteReservation = (reservationId) => {
+                  fetch(`/api/reservations/${reservationId}`, {
+                    method: 'DELETE',
+                    headers: {
+                      'Authorization': 'Bearer < JWT Token >'
+                    }
+                  })
+                  .then(response => {
+                    if (response.ok) {
+                      console.log('Reservation deleted successfully');
+                      // Do something on success
+                    } else if (response.status === 401) {
+                      console.error('Not authenticated');
+                      // Handle authentication error
+                    } else if (response.status === 404) {
+                      console.error('Reservation not found');
+                      // Handle reservation not found error
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error deleting reservation:', error);
+                    // Handle other errors
+                  });
+                }
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>

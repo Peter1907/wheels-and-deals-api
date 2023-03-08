@@ -5,7 +5,10 @@ class Api::AuthenticationController < Api::ApiController
     @user = User.find_by_email(params[:email])
     if @user&.authenticate(params[:password])
       token = jwt_encode(user_id: @user.id)
-      render json: { token: }, status: :ok
+      render json: {
+        token:,
+        user_name: @user.name
+      }, status: :ok
     else
       render json: { error: 'Invalid email or password' }, status: :unauthorized
     end

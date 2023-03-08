@@ -32,7 +32,7 @@ class Api::CarsController < Api::ApiController
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
-    render json: { message: 'Car deleted successfully' }, status: :ok
+    render json: { message: 'Car deleted successfully', car: @car }, status: :ok
   end
 
   private

@@ -1,0 +1,223 @@
+<div class="home pt-8 flex items-center ml-60 p-4 h-screen">
+  <%= render partial: "documentation/navigation" %>
+  <section class="max-w-[800px] self-start flex flex-col">
+    <h1 class="text-3xl font-bold mb-4">Users Endpoints</h1>
+    <h2 class="text-xl font-bold mb-2 ml-2">GET /api/users</h2>
+    <p class="px-4 py-2">Retrieves a list of all users in the system.</p>
+    <div class="px-4 pt-6">
+      <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+      <table class="table-auto w-full">
+        <thead>
+          <tr>
+            <th class="px-4 py-2">Status Code</th>
+            <th class="px-4 py-2">Response Body</th>
+            <th class="px-4 py-2">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border px-4 py-2">200</td>
+            <td class="border px-4 py-2 font-bold text-sm">[ { "id": 1, "name": "John Doe", "email": "john.doe@example.com" }, { "id": 2, "name": "Jane Smith", "email": "jane.smith@example.com" } ]</td>
+            <td class="border px-4 py-2">A list of all users in the system</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="px-4 pt-6">
+      <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+      <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+        <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+        <div class="bg-[#282c34] rounded-xl">
+          <pre class="!p-0 rounded-lg bg-[#282c34]">
+            <code class="text-sm max-h-80 !p-0">
+              fetch('/api/users', {
+                headers: {
+                  'Authorization': Bearer < JWT Token >
+                }
+              })
+                .then(response => response.json())
+                .then(data => {
+                  console.log(data);
+                  // handle the response data here
+                })
+                .catch(error => {
+                  console.error(error);
+                  // handle the error here
+                });
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">GET /api/users/:id</h2>
+      <p class="px-4 py-2">Retrieves a specific user by ID.</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">id</td>
+              <td class="border px-4 py-2">Integer</td>
+              <td class="border px-4 py-2">The ID of the user to retrieve</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">200</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "id": 1, "name": "John Doe", "email": "john.doe@example.com" }</td>
+              <td class="border px-4 py-2">The user with the specified ID</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">404</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "error": "User not found" }</td>
+              <td class="border px-4 py-2">The user with the specified ID could not be found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const userId = 1; // replace with the ID of the user to retrieve
+                
+                fetch(`/api/users/${userId}`, {
+                  headers: {
+                    'Authorization': 'Bearer < JWT Token >'
+                  }
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data);
+                    // handle the response data here
+                  })
+                  .catch(error => {
+                    console.error(error);
+                    // handle the error here
+                  });
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">POST /api/users</h2>
+      <p class="px-4 py-2">Creates a new user in the system.</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">name</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The name of the new user</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">email</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The email address of the new user</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">password</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The password of the new user</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">201</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "id": 3, "name": "Sarah Johnson", "email": "sarah.johnson@example.com" }</td>
+              <td class="border px-4 py-2">The newly created user</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">422</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "error": { "name": [ "can't be blank" ] } }</td>
+              <td class="border px-4 py-2">The user could not be created due to validation errors</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const userData = {
+                  name: 'John Doe',
+                  email: 'john.doe@example.com',
+                  password: 'password123'
+                };
+                
+                fetch('/api/users', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(userData)
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data);
+                    // handle the response data here
+                  })
+                  .catch(error => {
+                    console.error(error);
+                    // handle the error here
+                  });
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

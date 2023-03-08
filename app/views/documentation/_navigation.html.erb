@@ -1,5 +1,5 @@
 <div class="nav fixed top-0 bottom-0 left-0 w-56 bg-slate-800 text-white pt-8 pl-6">
-  <img src="./logo.svg" class="w-16 mb-6 ml-10" />
+  <%= image_tag("logo.svg", class:"w-16 mb-6 ml-10")%>
   <%= link_to "Home", documentation_path, class: "block px-4 py-2 hover:bg-slate-200 hover:text-slate-800 hover:font-bold" %>
   <%= link_to "Authentication", documentation_authentication_path, class: "block px-4 py-2 hover:bg-slate-200 hover:text-slate-800 hover:font-bold" %>
   <%= link_to "Users", documentation_users_path, class: "block px-4 py-2 hover:bg-slate-200 hover:text-slate-800 hover:font-bold" %>

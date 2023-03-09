@@ -1,5 +1,5 @@
 databases:
-  - name: pb-database
+  - name: w&d-database
     databaseName: pb_database
     user: peter1907
 

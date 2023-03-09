@@ -2,14 +2,16 @@ class Api::ReservationsController < Api::ApiController
   def index
     @data = @current_user.reservations.map do |reservation|
       {
-        country: reservation.country,
+        id: reservation.id,
         city: reservation.city,
+        country: reservation.country,
         date: reservation.date,
-        car_name: reservation.car.name
+        name: reservation.car.name,
+        photo: reservation.car.photo,
+        price: reservation.car.price
       }
     end
-    render json: { error: 'No reservations found' }, status: :not_found if @data.empty?
-    render json: @data, status: :ok unless @data.empty?
+    render json: @data
   end
 
   def create
@@ -20,6 +22,12 @@ class Api::ReservationsController < Api::ApiController
     else
       render json: @reservation.errors
     end
+  end
+
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    render json: @reservation
   end
 
   private

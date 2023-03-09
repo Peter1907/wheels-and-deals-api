@@ -5,7 +5,7 @@ class Api::AuthenticationController < Api::ApiController
     @user = User.find_by_email(params[:email])
     if @user&.authenticate(params[:password])
       token = jwt_encode(user_id: @user.id)
-      render json: { token: }, status: :ok
+      render json: { token:, user_name: @user.name }, status: :ok
     elsif @user.nil?
       render json: {
         error: 'This user does not exist, you must create an account first'

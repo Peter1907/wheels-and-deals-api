@@ -14,3 +14,7 @@
 }
 
 */
+
+table {
+  @apply border border-gray-200;
+}

@@ -7,8 +7,17 @@ class Api::CarsController < Api::ApiController
   end
 
   def show
-    @car = Car.find(params[:id])
-    render json: @car
+    @car = [Car.find(params[:id])].map do |car|
+      {
+        id: car.id,
+        name: car.name,
+        description: car.description,
+        photo: car.photo,
+        price: car.price,
+        reservationFee: car.reservation_fee
+      }
+    end
+    render json: @car, status: :ok
   end
 
   def create
@@ -18,6 +27,12 @@ class Api::CarsController < Api::ApiController
     else
       render json: @car.errors
     end
+  end
+
+  def destroy
+    @car = Car.find(params[:id])
+    @car.destroy
+    render json: { message: 'Car deleted successfully', car: @car }, status: :ok
   end
 
   private

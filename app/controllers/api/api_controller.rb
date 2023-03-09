@@ -6,7 +6,6 @@ class Api::ApiController < ActionController::API
 
   def authenticate_request
     header = request.headers['Authorization']
-    puts header
     header = header.split.last if header
     decoded = jwt_decode(header)
     if decoded == 'Token not found'

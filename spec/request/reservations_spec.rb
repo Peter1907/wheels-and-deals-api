@@ -5,13 +5,13 @@ RSpec.describe 'Reservations', type: :request do
     @user = User.create(name: 'Miguel', email: 'example@test.com', password: '123456')
     @car = Car.create(name: 'Lamborguini', photo: 'Photo link', description: 'Really Nice car', price: 10_000)
     @reservation = Reservation.create(date: '2025-10-10', city: 'Manta', country: 'Australia', user: @user, car: @car)
-    post '/login', params: { email: 'example@test.com', password: '123456' }
+    post api_login_path, params: { email: @user.email, password: @user.password }
     @token = JSON.parse(response.body)['token']
   end
 
   describe 'GET /index' do
     before do
-      get '/reservations', headers: { 'Authorization' => "Bearer #{@token}" }
+      get api_reservations_path, headers: { Authorization: @token }
     end
 
     it 'returns status code 200' do
@@ -39,7 +39,7 @@ RSpec.describe 'Reservations', type: :request do
         date: '2024-10-10',
         car_id: @car.id
       }
-      post '/reservations', headers: { Authorization: @token }, params: @params
+      post api_reservations_path, headers: { Authorization: @token }, params: @params
     end
 
     it 'returns status code 200' do

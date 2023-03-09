@@ -13,7 +13,7 @@ module JsonWebToken
   def jwt_decode(token)
     decode = JWT.decode(token, SECRET_KEY)[0]
     HashWithIndifferentAccess.new decode
-  rescue StandardError
+  rescue
     'Token not found'
   end
 end

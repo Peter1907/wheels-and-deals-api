@@ -3,7 +3,7 @@ require 'jwt'
 module JsonWebToken
   extend ActiveSupport::Concern
 
-  SECRET_KEY = Rails.application.secrets.secret_key_base
+  SECRET_KEY = Rails.application.credentials.secret_key_base
 
   def jwt_encode(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
@@ -13,7 +13,7 @@ module JsonWebToken
   def jwt_decode(token)
     decode = JWT.decode(token, SECRET_KEY)[0]
     HashWithIndifferentAccess.new decode
-  rescue StandardError
+  rescue
     'Token not found'
   end
 end

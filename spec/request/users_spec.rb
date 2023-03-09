@@ -7,9 +7,9 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET /users' do
     before do
-      post '/login', params: { email: user.email, password: user.password }
+      post api_login_path, params: { email: user.email, password: user.password }
       token = JSON.parse(response.body)['token']
-      get '/users', headers: { 'Authorization' => "Bearer #{token}" }
+      get api_users_path, headers: { 'Authorization' => "Bearer #{token}" }
     end
 
     it 'returns all users' do
@@ -25,16 +25,16 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'returns http unauthorized' do
-      post '/login', params: { email: user.email, password: 'invalid' }
+      post api_login_path, params: { email: user.email, password: 'invalid' }
       expect(response).to have_http_status(:unauthorized)
     end
   end
 
   describe 'GET /users/:id' do
     before do
-      post '/login', params: { email: user.email, password: user.password }
+      post api_login_path, params: { email: user.email, password: user.password }
       token = JSON.parse(response.body)['token']
-      get user_path(user.id), headers: { 'Authorization' => "Bearer #{token}" }
+      get api_user_path(user.id), headers: { 'Authorization' => "Bearer #{token}" }
     end
 
     it 'returns user' do
@@ -46,19 +46,19 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'returns http unauthorized' do
-      post '/login', params: { email: user.email, password: 'invalid' }
+      post api_login_path, params: { email: user.email, password: 'invalid' }
       expect(response).to have_http_status(:unauthorized)
     end
   end
 
   describe 'POST /users' do
     it 'creates a user' do
-      post '/users', params: { name: 'Test', email: 'test@example.com', password: 'password' }
+      post api_users_path, params: { name: 'Test', email: 'test@example.com', password: 'password' }
       expect(response).to have_http_status(:created)
     end
 
     it 'returns error when the params are missing' do
-      post '/users', params: { name: 'Test', email: '', password: 'password' }
+      post api_users_path, params: { name: 'Test', email: '', password: 'password' }
       expect(response.body).to include('"email":["can\'t be blank"]')
     end
   end

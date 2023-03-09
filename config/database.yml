@@ -84,6 +84,4 @@ test:
 #
 production:
   <<: *default
-  database: wheels_and_deals_api_production
-  username: wheels_and_deals_api
-  password: <%= ENV["WHEELS_AND_DEALS_API_DATABASE_PASSWORD"] %>
+  password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>

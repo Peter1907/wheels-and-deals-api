@@ -1,0 +1,19 @@
+databases:
+  - name: pb-database
+    databaseName: pb_database
+    user: peter1907
+
+services:
+  - type: web
+    name: Wheels-and-Deals
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: Wheels-and-Deals
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+        plan: free

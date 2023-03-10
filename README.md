@@ -156,7 +156,7 @@ Install this project with:
 
 ```sh
   cd wheels-and-deals-api
-  gem install
+  bundle install
 ```
 
 ### Usage
@@ -164,14 +164,23 @@ Install this project with:
 To run the project, execute the following command:
 
 ```sh
+  rails db:create
+  rails db:migrate
   rails s
 ```
 
 ### Run tests
 
-To run tests, run the following command:
+To run tests:
+- Remove `config/master.key` and `config/credentials.yml.enc`
+- Run:
 
-Example command:
+```sh
+  EDITOR=code rails credentials:edit
+```
+This command will create a new `master.key` and `credentials.yml.enc` if they do not exist
+- Then run the following command:
+
 ```sh
   bin/rails spec
 ```

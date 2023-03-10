@@ -1,0 +1,256 @@
+<div class="home pt-8 flex items-center ml-60 p-4 h-screen">
+  <%= render partial: "documentation/navigation" %>
+  <section class="max-w-[800px] self-start flex flex-col">
+    <h1 class="text-3xl font-bold mb-4">Reservations Endpoints</h1>
+    <h2 class="text-xl font-bold mb-2 ml-2">GET /api/reservations</h2>
+    <p class="px-4 py-2">Returns a list of all reservations.</p>
+    <div class="px-4 pt-6">
+      <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+      <table class="table-auto w-full">
+        <thead>
+          <tr>
+            <th class="px-4 py-2">Status Code</th>
+            <th class="px-4 py-2">Response Body</th>
+            <th class="px-4 py-2">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border px-4 py-2">200</td>
+            <td class="border px-4 py-2 font-bold text-sm">[
+              {
+                "id": 1,
+                "date": "Thu, 10 Oct 2023",
+                "city": "Manta",
+                "country": "Ecuador",
+                "user_id": 1,
+                "car_id": 1,
+                "created_at": "2022-03-08T13:45:30.123Z",
+                "updated_at": "2022-03-08T13:45:30.123Z"
+              },
+              {
+                "id": 2,
+                "date": "Wed, 8 Dex 2023",
+                "city": "Sidney",
+                "country": "Australia",
+                "user_id": 1,
+                "car_id": 1,
+                "created_at": "2022-03-08T13:45:30.123Z",
+                "updated_at": "2022-03-08T13:45:30.123Z"
+              },
+           ]</td>
+            <td class="border px-4 py-2">A list of all reservations in the system</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="px-4 pt-6">
+      <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+      <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+        <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+        <div class="bg-[#282c34] rounded-xl">
+          <pre class="!p-0 rounded-lg bg-[#282c34]">
+            <code class="text-sm max-h-80 !p-0">
+              fetch('/api/reservations')
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log(data);
+              })
+              .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+              });
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">POST /api/reservatios</h2>
+      <p class="px-4 py-2">Creates a new reservation in the system.</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">date</td>
+              <td class="border px-4 py-2">Date</td>
+              <td class="border px-4 py-2">The date of the reservation</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">city</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The city where the reservation takes place</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">country</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The country where the reservation takes place</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">car</td>
+              <td class="border px-4 py-2">Model</td>
+              <td class="border px-4 py-2">The car you want to reserve</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">201</td>
+              <td class="border px-4 py-2 font-bold text-sm">{"id": 1, "date": "Thu, 10 Oct 2023", "city": "Manta", "country": "Ecuador", "user_id": 1, "car_id": 1, "created_at": "2022-03-08T13:45:30.123Z", "updated_at": "2022-03-08T13:45:30.123Z"},</td>
+              <td class="border px-4 py-2">The newly created reservation</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">422</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "errors": { "date": ["can't be blank"], "city": ["can't be blank"], "country": ["can't be blank"], "car": ["can't be blank"] } }</td>
+              <td class="border px-4 py-2">The car could not be created due to validation errors</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const reservationData = {
+                  date: '24-10-2025',
+                  city: 'New York',
+                  country: 'USA',
+                  car.id: 1 
+                };
+                
+                fetch('/api/reservations', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer < JWT Token >'
+                  },
+                  body: JSON.stringify(reservationData)
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data);
+                    // handle the response data here
+                  })
+                  .catch(error => {
+                    console.error(error);
+                    // handle the error here
+                  });
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">DELETE /api/resevations</h2>
+      <p class="px-4 py-2">Deletes a reservation from the database</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">id</td>
+              <td class="border px-4 py-2">Integer</td>
+              <td class="border px-4 py-2">The ID of the reservation to be deleted</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">200</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "message": "Reservation deleted successfully" }</td>
+              <td class="border px-4 py-2">The newly created reservation</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">404</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "error": "Reservation not found" }</td>
+              <td class="border px-4 py-2">The reservation with the specified ID could not be found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const deleteReservation = (reservationId) => {
+                  fetch(`/api/reservations/${reservationId}`, {
+                    method: 'DELETE',
+                    headers: {
+                      'Authorization': 'Bearer < JWT Token >'
+                    }
+                  })
+                  .then(response => {
+                    if (response.ok) {
+                      console.log('Reservation deleted successfully');
+                      // Do something on success
+                    } else if (response.status === 401) {
+                      console.error('Not authenticated');
+                      // Handle authentication error
+                    } else if (response.status === 404) {
+                      console.error('Reservation not found');
+                      // Handle reservation not found error
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error deleting reservation:', error);
+                    // Handle other errors
+                  });
+                }
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

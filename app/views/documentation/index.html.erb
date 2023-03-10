@@ -1,0 +1,37 @@
+<div class="home pt-8 flex items-center ml-60 p-4 h-screen">
+  <%= render partial: "documentation/navigation" %>
+  <section class="max-w-[600px] self-start flex flex-col">
+    <h1 class="text-3xl font-bold mb-4">Welcome to the Wheels and Deals API Documentation</h1>
+    <h2 class="text-xl font-bold mb-2 ml-2">What is the Wheels and Deals API?</h2>
+    <p class="px-4 py-2">
+      Our API is organized around
+      <a class="text-blue-500 hover:text-blue-700 underline"
+        href="https://en.wikipedia.org/wiki/Representational_state_transfer"
+        target="_blank"
+      >
+        REST.
+      </a>
+      Our API has predictable resource-oriented URLs, accepts form-encoded
+      request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and
+      verbs.
+    </p>
+    <p class="px-4 py-2">
+      It's a simple API that is linked to the
+      <a class="text-blue-500 hover:text-blue-700 underline"
+        href="#"
+        target="_blank"
+      >
+        Wheels and Deals Frontend
+      </a>. It holds all the data for the frontend to display, as well as the information of
+      the users <em>(Names, Emails & Passwords)</em>.
+    </p>
+  </section>
+  <section class="self-start pr-2 w-[37%] h-full ml-auto flex flex-col items-start">
+    <div class="base-url mb-8 bg-slate-800 text-white rounded-lg w-full">
+      <h3 class="text-xl font-bold text-center p-2">Base URL</h3>
+      <p class="px-4 py-2 bg-slate-700 rounded-lg text-center">
+        <code class="text-sm font-mono">https://wheels-and-deals.onrender.com</code>
+      </p>
+    </div>
+  </section>
+</div>

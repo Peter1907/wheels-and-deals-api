@@ -1,0 +1,332 @@
+<div class="home pt-8 flex items-center ml-60 p-4 h-screen">
+  <%= render partial: "documentation/navigation" %>
+  <section class="max-w-[800px] self-start flex flex-col">
+    <h1 class="text-3xl font-bold mb-4">Cars Endpoints</h1>
+    <h2 class="text-xl font-bold mb-2 ml-2">GET /api/cars</h2>
+    <p class="px-4 py-2">Returns a list of all cars.</p>
+    <div class="px-4 pt-6">
+      <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+      <table class="table-auto w-full">
+        <thead>
+          <tr>
+            <th class="px-4 py-2">Status Code</th>
+            <th class="px-4 py-2">Response Body</th>
+            <th class="px-4 py-2">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border px-4 py-2">200</td>
+            <td class="border px-4 py-2 font-bold text-sm">[
+              {
+                "id": 1,
+                "name": "Tesla Model S",
+                "photo": "https://example.com/tesla.jpg",
+                "description": "A luxurious electric sedan.",
+                "price": 100000,
+                "created_at": "2022-03-08T13:45:30.123Z",
+                "updated_at": "2022-03-08T13:45:30.123Z"
+              },
+              {
+                "id": 2,
+                "name": "Porsche 911",
+                "photo": "https://example.com/porsche.jpg",
+                "description": "A high-performance sports car.",
+                "price": 150000,
+                "created_at": "2022-03-08T14:00:30.123Z",
+                "updated_at": "2022-03-08T14:00:30.123Z"
+              }
+           ]</td>
+            <td class="border px-4 py-2">A list of all cars in the system</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="px-4 pt-6">
+      <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+      <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+        <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+        <div class="bg-[#282c34] rounded-xl">
+          <pre class="!p-0 rounded-lg bg-[#282c34]">
+            <code class="text-sm max-h-80 !p-0">
+              fetch('/api/cars')
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log(data);
+              })
+              .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+              });
+            </code>
+          </pre>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">GET /api/cars/:id</h2>
+      <p class="px-4 py-2">Retrieves a single car by ID.</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">id</td>
+              <td class="border px-4 py-2">Integer</td>
+              <td class="border px-4 py-2">The ID of the car to retrieve</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">200</td>
+              <td class="border px-4 py-2 font-bold text-sm">{
+                "id": 1,
+                "name": "Toyota Corolla",
+                "photo": "https://example.com/photo.jpg",
+                "description": "A great car for commuting",
+                "price": 20000,
+                "created_at": "2022-03-07T09:42:55.981Z",
+                "updated_at": "2022-03-07T09:42:55.981Z"
+              }</td>
+              <td class="border px-4 py-2">The car with the specified ID</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const carId = 1; // replace with the ID of the car you want to retrieve
+                
+                fetch(`/api/cars/${carId}`)
+                .then(response => response.json())
+                .then(data => {
+                  // handle successful response
+                  console.log(data);
+                })
+                .catch(error => {
+                  // handle error response
+                  console.error(error);
+                });
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">POST /api/cars</h2>
+      <p class="px-4 py-2">Creates a new car in the system.</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">name</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The name of the new car</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">photo</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The link of the image</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">description</td>
+              <td class="border px-4 py-2">String</td>
+              <td class="border px-4 py-2">The description of the new car</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">price</td>
+              <td class="border px-4 py-2">Integer</td>
+              <td class="border px-4 py-2">The price of the new car</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">201</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "id": 1, "name": "Ferrari", "photo": "https://example.com/photo.jpg", "description": "A great car for commuting", "price": 20000, "created_at": "2022-03-07T09:42:55.981Z", "updated_at": "2022-03-07T09:42:55.981Z" }</td>
+              <td class="border px-4 py-2">The newly created car</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">422</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "errors": { "name": ["can't be blank"], "photo": ["can't be blank"], "description": ["can't be blank"], "price": ["can't be blank"] } }</td>
+              <td class="border px-4 py-2">The car could not be created due to validation errors</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const carData = {
+                  name: 'Ferrari',
+                  photo: 'https://example.com/photo.jpg',
+                  description: 'A great car for commuting',
+                  price: 20000
+                };
+                
+                fetch('/api/cars', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer < JWT Token >'
+                  },
+                  body: JSON.stringify(carData)
+                })
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data);
+                    // handle the response data here
+                  })
+                  .catch(error => {
+                    console.error(error);
+                    // handle the error here
+                  });
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="max-w-[800px] self-start flex flex-col">
+      <h2 class="text-xl font-bold mb-2 ml-2">DELETE /api/cars</h2>
+      <p class="px-4 py-2">Deletes a car object from the database</p>
+      <div class="px-4 pt-2">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Request Parameters</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Name</th>
+              <th class="px-4 py-2">Data Type</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">id</td>
+              <td class="border px-4 py-2">Integer</td>
+              <td class="border px-4 py-2">The ID of the car to be deleted</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Response</h3>
+        <table class="table-auto w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Status Code</th>
+              <th class="px-4 py-2">Response Body</th>
+              <th class="px-4 py-2">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">200</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "message": "Car deleted successfully" }</td>
+              <td class="border px-4 py-2">The newly created car</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">404</td>
+              <td class="border px-4 py-2 font-bold text-sm">{ "error": "Car not found" }</td>
+              <td class="border px-4 py-2">The car with the specified ID could not be found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 pt-6">
+        <h3 class="text-[17px] font-bold mb-2 ml-2">Example Request</h3>
+        <div class="examples text-slate-900 bg-[#343541] rounded-xl mx-4 my-6">
+          <h3 class="pl-4 text-sm text-white font-bold">JavaScript</h3>
+          <div class="bg-[#282c34] rounded-xl">
+            <pre class="!p-0 rounded-lg bg-[#282c34]">
+              <code class="text-sm max-h-80 !p-0">
+                const deleteCar = (carId) => {
+                  fetch(`/api/cars/${carId}`, {
+                    method: 'DELETE',
+                    headers: {
+                      'Authorization': 'Bearer < JWT Token >'
+                    }
+                  })
+                  .then(response => {
+                    if (response.ok) {
+                      console.log('Car deleted successfully');
+                      // Do something on success
+                    } else if (response.status === 401) {
+                      console.error('Not authenticated');
+                      // Handle authentication error
+                    } else if (response.status === 404) {
+                      console.error('Car not found');
+                      // Handle car not found error
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error deleting car:', error);
+                    // Handle other errors
+                  });
+                }
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
